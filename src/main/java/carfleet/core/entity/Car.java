@@ -27,9 +27,9 @@ public class Car {
     private double odometer;
 
     @Column(name = "driver_id")
-    private int driver_id;
+    private Long driver_id;
 
-    public Car(String model, double odometer, int driver_id) {
+    public Car(String model, double odometer, Long driver_id) {
         this.model = model;
         this.odometer = odometer;
         this.driver_id = driver_id;

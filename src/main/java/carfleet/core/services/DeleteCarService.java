@@ -5,16 +5,13 @@ import carfleet.core.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
 @Component
-public class AddCarService {
+public class DeleteCarService {
+
     @Autowired
-    CarRepository repository;
+    private CarRepository repository;
 
-    public void execute (Car carToAdd){
-
-        Car car = new Car(carToAdd.getModel(), carToAdd.getOdometer(), carToAdd.getDriver_id());
-        repository.save(car);
+    public void execute(Car carToDelete){
+        repository.delete(carToDelete);
     }
 }

@@ -18,7 +18,7 @@ public class Driver {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "full_name", nullable = false)
     private String  fullName;
@@ -30,9 +30,9 @@ public class Driver {
     private Date dob;
 
     @Column(name = "car_id", nullable = false)
-    private int carId;
+    private Long carId;
 
-    public Driver(int id, String fullName, String phoneNumber, Date dob, int carId) {
+    public Driver(Long id, String fullName, String phoneNumber, Date dob, Long carId) {
         this.id = id;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -56,7 +56,7 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return id == driver.id && carId == driver.carId
+        return Objects.equals(id, driver.id) && Objects.equals(carId, driver.carId)
                 && Objects.equals(fullName, driver.fullName)
                 && Objects.equals(phoneNumber, driver.phoneNumber)
                 && Objects.equals(dob, driver.dob);
