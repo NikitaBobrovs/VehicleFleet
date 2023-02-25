@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddCarService {
+
     @Autowired
-    CarRepository repository;
+    private CarRepository carRepository;
 
     public void execute (Car carToAdd){
 
         Car car = new Car(carToAdd.getModel(), carToAdd.getOdometer(), carToAdd.getDriver_id());
-        repository.save(car);
+        carRepository.save(car);
     }
 }

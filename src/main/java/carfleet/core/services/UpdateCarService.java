@@ -5,18 +5,20 @@ import carfleet.core.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Objects;
 
 @Component
 
 public class UpdateCarService {
     @Autowired
-    private CarRepository repository;
+    private CarRepository carRepository;
 
     public void execute (Car carToUpdate){
-        Car carFromDB = repository.findById(carToUpdate.getId());
 
-        repository.delete(carFromDB);
+        Car carFromDB = carRepository.findById(carToUpdate.getId()).get(0);
+
+        carRepository.delete(carFromDB);
 
         if(!(carToUpdate.getModel().matches(carFromDB.getModel()))){
             carFromDB.setModel(carToUpdate.getModel());
@@ -28,7 +30,7 @@ public class UpdateCarService {
             carFromDB.setDriver_id(carFromDB.getDriver_id());
         }
 
-        repository.save(carFromDB);
+        carRepository.save(carFromDB);
     }
 
     //TODO update inside db to keep same car_id
