@@ -1,5 +1,5 @@
 # VehicleFleet
 
-New project of webApp.
+New web application project.
 
-Vehicle and Dreiver management app.
+Vehicle and Driver management app.
