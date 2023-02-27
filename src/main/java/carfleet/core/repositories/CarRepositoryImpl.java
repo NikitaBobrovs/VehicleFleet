@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -36,12 +35,12 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public List<Car> findCar(Car car) {
-        String sql = "FROM Car WHERE (:model is null or model = :model)" +
+        String hql = "FROM Car WHERE (:model is null or model = :model)" +
                 "AND (:odometer is null or odometer = :odometer)" +
                 "AND (:driver_id is null or driver_id = :driver_id)";
         return sessionFactory
                 .getCurrentSession()
-                .createQuery(sql, Car.class)
+                .createQuery(hql, Car.class)
                 .setParameter("model", car.getModel())
                 .setParameter("odometer", car.getOdometer())
                 .setParameter("driver_id", car.getDriver_id())
@@ -63,6 +62,12 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public void update(Car car) {
-        sessionFactory.getCurrentSession().update(""); //TODO
+
+        String hql = "UPDATE Car set model =:model, odometer =:odometer WHERE id =:id";
+
+        sessionFactory.getCurrentSession().createQuery(hql)
+                .setParameter("model", car.getModel())
+                .setParameter("odometer", car.getOdometer())
+                .setParameter("id", car.getId()).executeUpdate();
     }
 }

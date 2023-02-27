@@ -1,21 +1,18 @@
-package carfleet.core.services;
+package carfleet.core.services.car;
 
 import carfleet.core.entity.Car;
 import carfleet.core.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import java.util.List;
 
 @Component
-public class AddCarService {
-
+public class FindCarService {
     @Autowired
     private CarRepository carRepository;
 
-    public void execute (Car carToAdd){
-
-        Car car = new Car(carToAdd.getModel(), carToAdd.getOdometer(), carToAdd.getDriver_id());
-        carRepository.save(car);
+    public List<Car> execute (Car car) {
+        return carRepository.findCar(car);
     }
 }

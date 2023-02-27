@@ -1,4 +1,4 @@
-package carfleet.core.services;
+package carfleet.core.services.car;
 
 import carfleet.core.entity.Car;
 import carfleet.core.repositories.CarRepository;
