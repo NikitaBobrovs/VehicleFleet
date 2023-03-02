@@ -33,7 +33,7 @@ public class CarController {
          addCarService.execute(car);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/findAll")
     public List<Car> findAll (){
         return findAllCarsService.execute();
     }

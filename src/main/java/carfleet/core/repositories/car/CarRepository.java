@@ -1,4 +1,4 @@
-package carfleet.core.repositories;
+package carfleet.core.repositories.car;
 import carfleet.core.entity.Car;
 import org.springframework.stereotype.Repository;
 
@@ -8,17 +8,17 @@ import java.util.List;
 @Repository
 public interface CarRepository  {
 
-    List<Car> findAll();
+    List<Car> findAllCars();
 
-    List<Car> findById(Long id);
+    List<Car> findCarById(Long id);
 
     List<Car> findCar(Car car);
 
-    void delete(Car car);
+    void deleteCarById(Car car);
 
-    void save(Car car);
+    void addCar(Car car);
 
-    void update(Car car);
+    void updateCar(Car car);
 
 
 }

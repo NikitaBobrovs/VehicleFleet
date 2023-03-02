@@ -1,4 +1,4 @@
-package carfleet.core.repositories;
+package carfleet.core.repositories.car;
 
 import carfleet.core.entity.Car;
 import org.hibernate.SessionFactory;
@@ -16,7 +16,7 @@ public class CarRepositoryImpl implements CarRepository {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Car> findAll() {
+    public List<Car> findAllCars() {
         return sessionFactory
                 .getCurrentSession()
                 .createQuery("SELECT c FROM Car c", Car.class)
@@ -24,7 +24,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public List<Car> findById(Long id) {
+    public List<Car> findCarById(Long id) {
         return sessionFactory
                 .getCurrentSession()
                 .createQuery("FROM Car WHERE id = :id", Car.class)
@@ -48,22 +48,22 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public void delete(Car car) {
+    public void deleteCarById(Car car) {
         sessionFactory
                 .getCurrentSession()
                 .createQuery("DELETE Car WHERE id = :id")
-                .setParameter("id", car.getId());
+                .setParameter("id", car.getId());   //TODO through Long id as param
     }
 
     @Override
-    public void save(Car car) {
+    public void addCar(Car car) {
         sessionFactory.getCurrentSession().save(car);
     }
 
     @Override
-    public void update(Car car) {
+    public void updateCar(Car car) {
 
-        String hql = "UPDATE Car set model =:model, odometer =:odometer WHERE id =:id";
+        String hql = "UPDATE Car SET model =:model, odometer =:odometer WHERE id =:id";
 
         sessionFactory.getCurrentSession().createQuery(hql)
                 .setParameter("model", car.getModel())

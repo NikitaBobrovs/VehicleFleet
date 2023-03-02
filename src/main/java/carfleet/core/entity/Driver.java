@@ -30,24 +30,22 @@ public class Driver {
     private Date dob;
 
     @Column(name = "car_id", nullable = false)
-    private Long carId;
+    private Long car_id;
 
-    public Driver(Long id, String fullName, String phoneNumber, Date dob, Long carId) {
-        this.id = id;
+    public Driver(String fullName, String phoneNumber, Date dob, Long car_id) {;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
-        this.carId = carId;
+        this.car_id = car_id;
     }
 
     @Override
     public String toString() {
         return "Driver{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
+                "fullName='" + fullName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", dob=" + dob +
-                ", carId=" + carId +
+                ", car_id=" + car_id +
                 '}';
     }
 
@@ -56,15 +54,12 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return Objects.equals(id, driver.id) && Objects.equals(carId, driver.carId)
-                && Objects.equals(fullName, driver.fullName)
-                && Objects.equals(phoneNumber, driver.phoneNumber)
-                && Objects.equals(dob, driver.dob);
+        return Objects.equals(id, driver.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullName, phoneNumber, dob, carId);
+        return getClass().hashCode();
     }
 }
 
